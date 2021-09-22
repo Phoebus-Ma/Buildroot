@@ -2,6 +2,14 @@
 -------------------------
 Buildroot is a tool that simplifies and automates the process of building a complete Linux system for an embedded system, using cross-compilation.
 
+### Development Env
+-------------------------
+Example: Ubuntu
+```
+$ sudo apt update
+$ sudo apt install build-essential libncurses5-dev patch bison binutils gettext texinfo asciidoc gawk musl-tools grub-pc-bin git bzip2 unzip qemu
+```
+
 ### Build
 -------------------------
 To build and use the buildroot stuff, do the following:
@@ -61,6 +69,7 @@ $ make -j4
 ### Running
 -------------------------
 ```
+$ cd Buildroot
 $ cat ./board/qemu/x86_64/readme.txt
 Run the emulation with:
 
@@ -71,5 +80,41 @@ Optionally add -smp N to emulate a SMP system with N CPUs.
 The login prompt will appear in the graphical window.
 $
 $
-$ qemu-system-x86_64 -M pc -kernel output/images/bzImage -drive file=output/images/rootfs.ext2,if=virtio,format=raw -append "rootwait root=/dev/vda console=tty1 console=ttyS0" -serial stdio -net nic,model=virtio -net user
+$ ./output/host/bin/qemu-system-x86_64 -M pc -kernel output/images/bzImage -drive file=output/images/rootfs.ext2,if=virtio,format=raw -append "rootwait root=/dev/vda console=tty1 console=ttyS0" -serial stdio -net nic,model=virtio -net user
 ```
+
+### Log
+```
+Linux version 5.10.66
+...
+Run /sbin/init as init process
+random: fast init done
+EXT4-fs (vda): re-mounted. Opts: (null)
+Starting syslogd: OK
+Starting klogd: OK
+Running sysctl: OK
+Saving random seed: random: dd: uninitialized urandom read (512 bytes read)
+OK
+Starting network: udhcpc: started, v1.33.1
+random: mktemp: uninitialized urandom read (6 bytes read)
+udhcpc: sending discover
+udhcpc: sending select for 10.0.2.15
+udhcpc: lease of 10.0.2.15 obtained, lease time 86400
+deleting routers
+random: mktemp: uninitialized urandom read (6 bytes read)
+adding dns 10.0.2.3
+OK
+
+Welcome to Buildroot
+buildroot login: root
+# ls
+# cd ..
+# ls
+bin         lib         lost+found  opt         run         tmp
+dev         lib64       media       proc        sbin        usr
+etc         linuxrc     mnt         root        sys         var
+# 
+# 
+# 
+```
+
