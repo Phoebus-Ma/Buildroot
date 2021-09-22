@@ -84,6 +84,7 @@ $ ./output/host/bin/qemu-system-x86_64 -M pc -kernel output/images/bzImage -driv
 ```
 
 ### Log
+-------------------------
 ```
 Linux version 5.10.66
 ...
@@ -117,4 +118,8 @@ etc         linuxrc     mnt         root        sys         var
 # 
 # 
 ```
+
+### License
+-------------------------
+The Buildroot is licensed under the GNU General Public License, version 2.
 
